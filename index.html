@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Pondati! ❤️</title>
+    
+    <!-- CSS Linking -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Background Canvas for Premium Effects -->
+    <canvas id="bgEffectsCanvas"></canvas>
+
+    <!-- Password Screen -->
+    <div id="passwordScreen">
+        <div class="passwordLogo font-display">🎂</div>
+        <h1 class="passwordTitle font-display">Happy Birthday!</h1>
+        <div class="passwordInputWrapper">
+            <input type="password" id="passwordInput" class="passwordInput" placeholder="Enter password..." autofocus>
+            <button class="passwordBtn" id="passwordBtn">Enter</button>
+        </div>
+        <p class="passwordHint">Hint: your name and your's husband nickname🍰<br>(WITH SPACE) 🍰</p>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen">
+        <p class="loadingText font-display">Preparing the magic...</p>
+        <div class="loadingSpinner"></div>
+        <div class="loadingProgress">
+            <div class="loadingBar" id="loadingBar"></div>
+        </div>
+    </div>
+
+    <!-- Main Surprise Content -->
+    <div id="mainContent">
+        
+        <!-- Countdown Section -->
+        <div id="countdown">
+            <h2 class="countdownTitle font-display">The Grand Celebration Countdown</h2>
+            <div class="countdownNumbers">
+                <div class="countdownUnit">
+                    <span id="days">00</span>
+                    <div>Days</div>
+                </div>
+                <div class="countdownUnit">
+                    <span id="hours">00</span>
+                    <div>Hours</div>
+                </div>
+                <div class="countdownUnit">
+                    <span id="minutes">00</span>
+                    <div>Minutes</div>
+                </div>
+                <div class="countdownUnit">
+                    <span id="seconds">00</span>
+                    <div>Seconds</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Birthday Cake Section -->
+        <div class="cakeContainer">
+            <h2 class="sectionTitle font-display">Make a Wish! 🎂</h2>
+            <canvas id="cakeCanvas" width="400" height="400"></canvas>
+            <div class="cakeControls">
+                <button class="btn-action" id="blowCandlesBtn">💨 Blow Candles</button>
+                <button class="btn-action" id="cutCakeBtn">🍰 Cut Cake Slice</button>
+            </div>
+        </div>
+
+        <!-- Premium Photo Gallery -->
+        <div class="gallerySection">
+            <h2 class="sectionTitle font-display">Beautiful Memories 📸</h2>
+            <div id="photoGallery">
+                <!-- JavaScript populates images -->
+            </div>
+        </div>
+
+        <!-- Dynamic Typewriter Message -->
+        <div class="typewriterSection">
+            <h2 class="sectionTitle font-display">A Special Letter Just For You ✉️</h2>
+            <div class="typewriterContainer">
+                <p id="typewriterText"></p>
+            </div>
+        </div>
+
+        <!-- Interactive Celebration Launchers -->
+        <div class="celebrationBtns">
+            <button class="btn-celebration btn-confetti" id="confettiBtn">🎊 Launch Confetti</button>
+            <button class="btn-celebration btn-fireworks" id="fireworksBtn">🎆 Launch Fireworks</button>
+        </div>
+
+        <!-- Trigger Final Screen Button -->
+        <div class="finalTriggerContainer">
+            <button id="triggerFinalScreenBtn" class="premium-button">Open Final Surprise 🌟</button>
+        </div>
+
+        <!-- Final Fullscreen Surprise Overlay -->
+        <div id="finalSurprise">
+            <h1 class="surpriseTitle font-display">HAPPY BIRTHDAY! 🎉</h1>
+            <div class="surpriseMessage">
+                <p>Special Surprise ❤️</p>
+                <p>Oru marriage function la nee ennai first time paatha</p>
+                <p>Enakku theriyama en Instagram ID aah un friend moolama vangi konjam konjam aah pesa start pannom</p>
+                <p>Appo theriyuma?</p>
+                <p>Indha ponnu dhaan oru naal en life la ivlo periya place eduppa nu enakku suthama theriyala ❤️</p>
+                <p>Bayandhu bayandhu Kumbakonam park la rendu perum meet pannom</p>
+                <p>Yarukkum theriyama  oruvarai oruvar paathukittu ninna andha moment la naan unakku kudutha andha jimikki</p>
+                <p>Adhu oru small gift dhaan. Aana ippo yosicha adhu namma story oda first memories la onnu ❤️</p>
+                <p>Oru naal “Naa thanni kudikka poren” nu naan solla, nee edhukku ivlo seekiram odi poi thanni eduthuttu vandhu enakku kudutha nu enakku innum puriyala</p>
+                <p>Aana andha chinna vishayam kooda enakku romba perusa irundhuchu. Because Nee enna care pannura nu words la sollama, chinna chinna things la kaamichadhu. </p>
+                <p>“Ne romba nalla paiyana irukka” nu nee sollumbodhu enakku oru happiness… “Enakku onnume theriyala” nu nee sollumbodhu enakku sirippu…</p>
+                <p>Naan un mela kovapadama irundha, “Enna nee edhukkum kovapadama irukka?” nu nee kekkura… Aana unakku theriyuma? Nee enna pannalum, adhu unakku pidichadhu nu therinja pothum, unn mela kovam varaadhu.</p>
+                <p>Aana… Namma sandai mattum sollave vendaam. 😂</p>
+                <p>Chinna chinna vishayathukkum nee kochipa… Thappu un mela irundhaalum etho naa pannina maari kochipa… Azhudhu, pesama irundhu, ennai samadhanapadutha vechiduva… Unna samadhanapaduthuradhe enakku oru full-time job maari aayiduchu. 😂❤️</p>
+                <p>Sila neram “Edhukkuda ivlo chinna vishayathukku kochikura?” nu enakku thonum. Aana konjam nerathula… Un kitta vanthu kenjaama enakku irukka mudiyadhu.</p>
+                <p>Oru photo kaga kooda naan evlo kenjirukken… Adhukkaga evlo sandai potrukkom… Aana oru point-ku mela “Yen da naan ivlo kenjanum?” nu enakke en mela kovam varum. Still… pondati thana kenjurom vera yarutaiyum ella la unta thana kenja mudiyum. ❤️</p>
+                <p>Namma rendu perum oru place-ku polaam nu plan pannom  Nee bayandhu “Yaarachum paathuduvaanga” nu solli entha kovil ku polaam nu sonna</p>
+                <p>Namma planned aah kovil kulla poi, saami kumbittu, saamiya suthittu varumbodhu First time namma rendu perum kai pidichu nadandha andha moment… Adha naan marakka maaten. ❤️</p>
+                <p>Andha happiness mudiyurathukulla un appa call pannitaanga. 😂 Adhu namma story-la oru comedy scene maari irundhaalum… Enakku adhu oru unforgettable memory.</p>
+                <p>Adhe maari… Unna paaka mudiyama college cut pannitu, mask pottukittu bus stop-ku vandha days… Un friends: “Yaaru di ivan mask pottukittu namalaiye paakuran?” nu yosippaanga… Aana avangalukku enna theriyum? Andha mask-kulla irundha paiyan unnai paaka dhaan vandhirukkaan nu. Avangalukku theriyadha oru secret… Unakkum enakkum mattum therinja secret. ❤️ Andha secret dhaan namma relationship-a innum special-a maathuchu.</p>
+                <p>Nee enakku oru kappu vangikodutha… Naan adha theriyama “En edhu vangitu vandha?” nu ketten… Nee kochikitta… Adhukku apram naan andha kappa vaangi potten… Inna varaikkum adha kalattala. Yen theriyuma? Adhu just oru kappu illa… Nee enakku kudutha oru ninaivu. ❤️</p>
+                <p>Namma relationship-la periya periya moments mattum illa… Oru jimikki… Oru kai pidippu… Oru mask… Oru bus stop… Oru kappu… Chinna chinna things dhaan… Aana enakku… Andha chinna things ellame romba periya memories. 🫶</p>
+                <p>Namma perfect couple illa… Namma sandai poduvom, nee kochipa, naan kenjuven, sometimes naanum thappu pannuven… Aana evlo sandai vandhaalum… Namma rendu perukkum mattum purinja indha chinna ulagam <strong>❤️</strong></p>
+                <p>Muthazhagu… Un kooda irundha ovvoru memory-um enakku oru story. Andha story-ku innum neraya pages venum… Adhula next page enna nu theriyala… Aana andha page-la kooda “nee” irukkanum nu mattum theriyum. ❤️‍🩹</p>
+                <p>Happy Birthday, En Pondati 💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋❤️</p>
+                <p>— Un Mama ❤️</p>
+            </div>
+            <button class="surpriseBtn" id="restartBtn">Replay Magic ✨</button>
+        </div>
+    </div>
+
+    <!-- Background Audio -->
+    <audio id="backgroundMusic" loop preload="auto">
+        <source src="song.mpeg" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- JavaScript Linking -->
+    <script src="script.js"></script>
+</body>
+</html>

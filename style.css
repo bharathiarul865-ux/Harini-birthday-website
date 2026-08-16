@@ -1,0 +1,509 @@
+:root {
+    --bg-primary: #050508;
+    --bg-card: rgba(26, 26, 38, 0.65);
+    --accent-gold: #ffd700;
+    --accent-pink: #ff6b9d;
+    --accent-purple: #a855f7;
+    --text-white: #ffffff;
+    --text-gold: #ffd700;
+    --text-pink: #ff6b9d;
+    --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-white);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Custom Beautiful Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0512;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--accent-pink), var(--accent-purple));
+    border-radius: 4px;
+}
+
+.font-display {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Background Canvas */
+#bgEffectsCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Password Screen */
+#passwordScreen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #10061d 0%, #05030a 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 1.5rem;
+    text-align: center;
+    transition: opacity 0.8s ease;
+}
+
+#passwordScreen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.passwordLogo {
+    font-size: 4.5rem;
+    margin-bottom: 1rem;
+    animation: bounce 2s infinite alternate;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-15px); }
+}
+
+.passwordTitle {
+    font-size: 2.8rem;
+    color: var(--text-gold);
+    margin-bottom: 2rem;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.passwordInputWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    width: 100%;
+    max-width: 320px;
+}
+
+.passwordInput {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: white;
+    font-size: 1.1rem;
+    text-align: center;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.passwordInput:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.25);
+}
+
+.passwordBtn {
+    width: 100%;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.passwordBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+}
+
+.passwordHint {
+    margin-top: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Loading Screen */
+#loadingScreen {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#loadingScreen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loadingText {
+    font-size: 1.6rem;
+    color: var(--text-gold);
+    margin-bottom: 2rem;
+}
+
+.loadingSpinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 255, 255, 0.08);
+    border-top-color: var(--accent-gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loadingProgress {
+    width: 250px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+    margin-top: 2rem;
+    overflow: hidden;
+}
+
+.loadingBar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-pink), var(--accent-gold), var(--accent-purple));
+    transition: width 0.1s ease;
+}
+
+/* Main Content Layout */
+#mainContent {
+    display: none;
+    position: relative;
+    z-index: 2;
+    padding: 3rem 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#mainContent.active {
+    display: block;
+}
+
+/* Countdown */
+#countdown {
+    text-align: center;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    backdrop-filter: blur(10px);
+}
+
+.countdownTitle {
+    color: var(--text-pink);
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+}
+
+.countdownNumbers {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.countdownUnit {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    min-width: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.countdownUnit span {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+}
+
+.countdownUnit div {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Cake Container */
+.cakeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2.5rem 1.5rem;
+    margin-bottom: 3rem;
+    backdrop-filter: blur(10px);
+}
+
+.sectionTitle {
+    color: var(--text-gold);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+#cakeCanvas {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    max-width: 100%;
+    height: auto;
+}
+
+.cakeControls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-action {
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.btn-action:hover {
+    background: var(--accent-pink);
+    border-color: var(--accent-pink);
+    transform: translateY(-2px);
+}
+
+/* Gallery Section */
+.gallerySection {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    backdrop-filter: blur(10px);
+}
+
+#photoGallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+}
+
+.photoItem {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.photoItem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.photoItem:hover img {
+    transform: scale(1.08);
+}
+
+/* Typewriter Section */
+.typewriterSection {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    backdrop-filter: blur(10px);
+}
+
+.typewriterContainer {
+    min-height: 120px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Celebration Launchers */
+.celebrationBtns {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.btn-celebration {
+    padding: 1.1rem 2.2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-confetti {
+    background: linear-gradient(135deg, #ff9f43, #ff5252);
+    color: white;
+}
+
+.btn-fireworks {
+    background: linear-gradient(135deg, #00d2ff, #9b5de5);
+    color: white;
+}
+
+.btn-celebration:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+}
+
+/* Final Trigger */
+.finalTriggerContainer {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.premium-button {
+    padding: 1.2rem 3rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;
+    background: linear-gradient(90deg, #ffe066, #f5b041);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.premium-button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 45px rgba(255, 215, 0, 0.65);
+}
+
+/* Final Surprise Overlay - Fixed Overflow Bug for Scrolling */
+#finalSurprise {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #1e0933 0%, #050209 100%);
+    z-index: 200;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    overflow-y: auto; /* Enables scrolling for long text */
+    -webkit-overflow-scrolling: touch;
+}
+
+#finalSurprise.active {
+    display: flex;
+}
+
+.surpriseTitle {
+    font-size: 3.5rem;
+    background: linear-gradient(90deg, #ff6b9d, #ffd700, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+    animation: glowText 2s infinite alternate;
+}
+
+@keyframes glowText {
+    from { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3)); }
+    to { filter: drop-shadow(0 0 25px rgba(255, 107, 157, 0.6)); }
+}
+
+.surpriseMessage {
+    font-size: 1.15rem;
+    max-width: 750px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.surpriseMessage p {
+    margin-bottom: 1.2rem;
+}
+
+.surpriseMessage p:last-child {
+    margin-bottom: 0;
+}
+
+.surpriseBtn {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.surpriseBtn:hover {
+    background: var(--accent-pink);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(255, 107, 157, 0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .surpriseTitle { font-size: 2.3rem; }
+    .passwordTitle { font-size: 2.2rem; }
+    .countdownUnit { min-width: 75px; padding: 0.8rem 0.5rem; }
+    .countdownUnit span { font-size: 1.6rem; }
+    .surpriseMessage { font-size: 1rem; padding: 1.2rem; }
+    #mainContent { padding: 1.5rem 1rem; }
+}
