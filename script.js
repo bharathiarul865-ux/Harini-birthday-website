@@ -1,5 +1,5 @@
 // Configuration
-const PASSWORD = "Harini mama";
+const PASSWORD = "harini mama";
 // Sets countdown target to 15 days from today dynamically
 const COUNTDOWN_DATE = new Date().getTime() + (01 * 01 * 10 * 60 * 1000);
 
